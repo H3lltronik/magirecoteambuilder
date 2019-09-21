@@ -1,0 +1,29 @@
+.main-logo {
+    transform: translateY(-20%);
+    // padding: 3rem;
+    &_container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.main-card {
+    min-height: 50vh;
+    margin: auto;
+}
+
+.main-button {
+    width: auto;
+    height: auto;
+    border: none;
+    background: url('/imgs/empty-btn.png') center center / contain no-repeat;
+    background-size: 100% 100%;
+    padding: 4px 1rem;
+    @include font-notoserif-regular;
+
+    &:hover {
+        opacity: 0.6;
+    }
+}

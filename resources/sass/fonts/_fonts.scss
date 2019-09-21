@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Noto Serif Regular';
+    src: url('/notoserif-regular.ttf') format('truetype');
+}
+
+@mixin font-notoserif-regular {
+    font-family: 'Noto Serif Regular';
+    color: white;
+    text-shadow: -2px 0 #ff3063, 0 2px #ff3063, 2px 0 #ff3063, 0 -2px #ff3063;
+    font-style: normal;
+}

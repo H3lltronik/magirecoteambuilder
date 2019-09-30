@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MainPage from './components/MainPage.vue';
-import CreateInventory from './components/CreateInventory.vue';
+import MainPage from './views/MainPage.vue';
+import CreateInventory from './views/CreateInventory.vue';
 
 Vue.use(Router)
 

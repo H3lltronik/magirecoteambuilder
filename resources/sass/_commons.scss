@@ -6,12 +6,126 @@
 
 html, body, #app {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .viewport-height {
     height: 100vh !important;
 }
 
-.bg-transparent {
-    background-color: transparent;
+.primary-box {
+    &_outer-border {
+        position: relative;
+
+        height: 100%;
+        padding: 1px;
+        background-color: #d9bb94;
+        --notchSize: 10px;
+
+        clip-path:
+            polygon(
+            0% var(--notchSize),
+            var(--notchSize) 0%,
+            calc(100% - var(--notchSize)) 0%,
+            100% var(--notchSize),
+            100% calc(100% - var(--notchSize)),
+            calc(100% - var(--notchSize)) 100%,
+            var(--notchSize) 100%,
+            0% calc(100% - var(--notchSize))
+        )
+    }
+
+    &_middle-border {
+        position: relative;
+        height: 100%;
+        padding-top: 1.2rem;
+        --notchSize: 10px;
+
+        clip-path:
+            polygon(
+            0% var(--notchSize),
+            var(--notchSize) 0%,
+            calc(100% - var(--notchSize)) 0%,
+            100% var(--notchSize),
+            100% calc(100% - var(--notchSize)),
+            calc(100% - var(--notchSize)) 100%,
+            var(--notchSize) 100%,
+            0% calc(100% - var(--notchSize))
+        );
+
+        background: rgb(255,155,197);
+        background: -moz-linear-gradient(90deg, rgba(255,155,197,1) 0%, rgba(255,255,255,1) 60%);
+        background: -webkit-linear-gradient(90deg, rgba(255,155,197,1) 0%, rgba(255,255,255,1) 60%);
+        background: linear-gradient(90deg, rgba(255,155,197,1) 0%, rgba(255,255,255,1) 60%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff9bc5",endColorstr="#ffffff",GradientType=1);
+    }
+
+    &_inner {
+        &_content {
+            height: 100%;
+            padding: 0.5rem;
+            background-color: #fff;
+            overflow-y: auto;
+            position: relative;
+
+            --notchSize: 10px;
+
+            clip-path:
+                polygon(
+                0% var(--notchSize),
+                0% 0%,
+                100% 0%,
+                100% var(--notchSize),
+                100% calc(100% - var(--notchSize)),
+                calc(100% - var(--notchSize)) 100%,
+                var(--notchSize) 100%,
+                0% calc(100% - var(--notchSize))
+            );
+        }
+
+        &_toolbar {
+            &_label {
+                font-size: 9pt;
+                padding: 0 5px;
+            }
+        }
+
+        &_title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin-left: 0.5rem;
+        }
+        &_controls {
+            font-size: 9pt;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.primary-title {
+    color: white;
+    text-shadow: -1px -1px 0 #ff4b91, 1px -1px 0 #ff4b91, -1px 1px 0 #ff4b91, 1px 1px 0 #ff4b91;
+}
+
+.primary-scrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #acabab;
+        border-radius: 1rem;
+    }
+}
+
+.no-scroll {
+    overflow-y: unset;
+}
+
+label {
+    margin-bottom: 0 !important;
 }

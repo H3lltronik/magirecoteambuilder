@@ -11585,14 +11585,87 @@ html,
 body,
 #app {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .viewport-height {
   height: 100vh !important;
 }
 
-.bg-transparent {
+.primary-box_outer-border {
+  position: relative;
+  height: 100%;
+  padding: 1px;
+  background-color: #d9bb94;
+  --notchSize: 10px;
+  -webkit-clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100% - var(--notchSize)) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+          clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100% - var(--notchSize)) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+}
+
+.primary-box_middle-border {
+  position: relative;
+  height: 100%;
+  padding-top: 1.2rem;
+  --notchSize: 10px;
+  -webkit-clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100% - var(--notchSize)) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+          clip-path: polygon(0% var(--notchSize), var(--notchSize) 0%, calc(100% - var(--notchSize)) 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+  background: #ff9bc5;
+  background: linear-gradient(90deg, #ff9bc5 0%, white 60%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff9bc5",endColorstr="#ffffff",GradientType=1);
+}
+
+.primary-box_inner_content {
+  height: 100%;
+  padding: 0.5rem;
+  background-color: #fff;
+  overflow-y: auto;
+  position: relative;
+  --notchSize: 10px;
+  -webkit-clip-path: polygon(0% var(--notchSize), 0% 0%, 100% 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+          clip-path: polygon(0% var(--notchSize), 0% 0%, 100% 0%, 100% var(--notchSize), 100% calc(100% - var(--notchSize)), calc(100% - var(--notchSize)) 100%, var(--notchSize) 100%, 0% calc(100% - var(--notchSize)));
+}
+
+.primary-box_inner_toolbar_label {
+  font-size: 9pt;
+  padding: 0 5px;
+}
+
+.primary-box_inner_title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 0.5rem;
+}
+
+.primary-box_inner_controls {
+  font-size: 9pt;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 0.5rem;
+}
+
+.primary-title {
+  color: white;
+  text-shadow: -1px -1px 0 #ff4b91, 1px -1px 0 #ff4b91, -1px 1px 0 #ff4b91, 1px 1px 0 #ff4b91;
+}
+
+.primary-scrollbar::-webkit-scrollbar {
+  width: 6px;
   background-color: transparent;
+}
+
+.primary-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #acabab;
+  border-radius: 1rem;
+}
+
+.no-scroll {
+  overflow-y: unset;
+}
+
+label {
+  margin-bottom: 0 !important;
 }
 
 .main-logo {
@@ -11626,5 +11699,44 @@ body,
 
 .main-button:hover {
   opacity: 0.6;
+}
+
+.aside_container {
+  color: white;
+}
+
+.aside_logo {
+  width: 100%;
+}
+
+.aside_logo_container {
+  background-color: transparent;
+  min-height: 150px;
+}
+
+.aside_body {
+  border: none !important;
+}
+
+.aside_body_container {
+  background-color: #303133;
+  height: 100%;
+}
+
+.item-mosaic {
+  cursor: pointer;
+  height: 150px;
+  font-size: 9pt;
+}
+
+.custom-el-dialog {
+  min-height: 50vh !important;
+  max-height: 70vh !important;
+}
+
+.custom-el-dialog .el-dialog__header,
+.custom-el-dialog .el-dialog__body {
+  padding: 0;
+  margin: 0;
 }
 

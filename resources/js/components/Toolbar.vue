@@ -1,6 +1,6 @@
 <template>
-    <div>
-        ola
+    <div class="toolbar_container">
+        HOLA
     </div>
 </template>
 

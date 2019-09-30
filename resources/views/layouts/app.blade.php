@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body style="background: url( {{asset('imgs/Wiki-background.jpg')}} ) center center / cover no-repeat">
-    <div id="app" class="container-fluid">
+    <div id="app" class="container-fluid p-0">
         {{-- @yield('content') --}}
         <main-component/>
     </div>

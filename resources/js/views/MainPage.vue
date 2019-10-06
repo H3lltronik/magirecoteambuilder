@@ -7,7 +7,7 @@
 
                     <div class="d-flex w-100 justify-content-around">
                         <button class="main-button">IMPORT</button>
-                        <button class="main-button" @click="goToPage('createInvetory')">CREATE</button>
+                        <button class="main-button" @click="goToPage('app/inventory/memorias/select')">CREATE</button>
                     </div>
                 </div>
             </div>

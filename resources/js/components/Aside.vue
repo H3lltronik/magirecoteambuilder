@@ -1,16 +1,16 @@
 <template>
     <el-container class="h-100" direction="vertical">
         <div class="aside_logo_container">
-            <img class="aside_logo" src="imgs/magiarecord_logo-chido.png" alt="">
+            <img class="aside_logo" src="http://localhost:3000/imgs/magiarecord_logo-chido.png" alt="">
         </div>
         <el-col class="aside_body_container">
 
             <el-menu class="aside_body" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-            <el-menu-item index="1">
+            <el-menu-item index="1" @click="goToPage ('app/inventory/magical-girls/select')">
                 <i class="el-icon-menu"></i>
                 <span>Magical Girls Selector</span>
             </el-menu-item>
-            <el-menu-item index="2">
+            <el-menu-item index="2" @click="goToPage ('app/inventory/memorias/select')">
                 <i class="el-icon-document"></i>
                 <span>Memoria Selector</span>
             </el-menu-item>
@@ -21,8 +21,10 @@
                     <span slot="title">Inventory</span>
                 </template>
                 <el-menu-item-group>
-                    <el-menu-item index="3-1">Memoria</el-menu-item>
-                    <el-menu-item index="3-2">Magical Girls</el-menu-item>
+                    <el-menu-item index="3-1" @click="goToPage ('app/inventory/memorias/show')">
+                        Memoria
+                    </el-menu-item>
+                    <el-menu-item index="3-2" @click="goToPage ('app/inventory/magical-girls/show')">Magical Girls</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
 
@@ -45,6 +47,11 @@ export default {
     data () {
         return {
 
+        }
+    },
+    methods: {
+        goToPage (page) {
+            this.$router.push('/' + page);
         }
     }
 }

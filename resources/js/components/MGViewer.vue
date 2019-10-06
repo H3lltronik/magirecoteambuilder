@@ -23,7 +23,7 @@
                             </el-col>
                             <el-col :span="24">
                                 <el-row type="flex">
-                                    <el-input-number :disabled="defaultValues.default" class="mx-auto" size="medium" v-model="memLevel" :min="1" :max="defaultValues.maxLvl"></el-input-number>
+                                    <el-input-number :disabled="defaultValues.default" class="mx-auto" size="medium" v-model="MGLevel" :min="1" :max="maxLvl"></el-input-number>
                                 </el-row>
                             </el-col>
                         </el-row>
@@ -36,7 +36,7 @@
                             </el-col>
                             <el-col :span="24">
                                 <el-row type="flex">
-                                    <el-input-number :disabled="defaultValues.default" class="mx-auto" size="medium" v-model="memSlots" :min="1" :max="4"></el-input-number>
+                                    <el-input-number :disabled="defaultValues.default" class="mx-auto" size="medium" v-model="MGSlots" :min="1" :max="4"></el-input-number>
                                 </el-row>
                             </el-col>
                         </el-row>
@@ -44,19 +44,19 @@
                         <el-row class="" justify="center">
                             <el-col :span="24">
                                 <el-row type="flex">
-                                    <div class="mx-auto">Copies</div>
+                                    <div class="mx-auto">Rarity</div>
                                 </el-row>
                             </el-col>
                             <el-col :span="24">
                                 <el-row type="flex">
-                                    <el-input-number :disabled="defaultValues.default" class="mx-auto" size="medium" v-model="memCopies" :min="1"></el-input-number>
+                                    <el-input-number :disabled="defaultValues.default" class="mx-auto" size="medium" v-model="MGRarity" :min="1" :max="5"></el-input-number>
                                 </el-row>
                             </el-col>
                         </el-row>
 
                         <el-row justify="center">
                             <el-row type="flex">
-                                <el-button class="mx-auto" type="primary" @click="addMemoria ()" :disabled="defaultValues.default">
+                                <el-button class="mx-auto" type="primary" @click="addMagicalGirl ()" :disabled="defaultValues.default">
                                     Add
                                 </el-button>
                             </el-row>
@@ -74,43 +74,68 @@ import { mapGetters } from 'vuex'
 export default {
     data () {
         return {
-            memLevel: 1,
-            memSlots: 1,
-            memCopies: 1,
+            MGLevel: 1,
+            MGSlots: 1,
+            MGRarity: 1,
         }
     },
     methods: {
-        addMemoria () {
-            let newMemoria = this.getSelectedMemoria
+        addMagicalGirl () {
+            let newMagicalGirl = this.magicalGirl
 
-            for (let i = 0; i < this.memCopies; i++) {
-                newMemoria.level = this.memLevel
-                newMemoria.slots = this.memSlots
+            newMagicalGirl.level = this.memLevel
+            newMagicalGirl.slots = this.memSlots
 
-                this.$store.commit('addMemoria', newMemoria)
-            }
+            this.$store.commit('addMagicalGirl', newMagicalGirl)
 
             this.$notify({
                 title: 'Success',
-                message: `${this.memCopies} memorias were added yo your inventory!`,
+                message: `A magical girls were added yo your inventory!`,
                 type: 'success'
             });
         }
     },
     computed: {
-        ...mapGetters([
-            'getSelectedMemoria'
-        ]),
+        ...mapGetters({
+            magicalGirl: 'getSelectedMagicalGirl',
+        }),
         defaultValues () {
-            if (!this.getSelectedMemoria) {
+            if (!this.magicalGirl) {
                 return {
                     name: 'Madoka Senpai ~nwn~',
                     image: 'https://magiarecord.gamepress.gg/sites/magiarecord/files/2019-06/salt.png',
                     default: true,
                 }
             } else {
-                return this.getSelectedMemoria
+                this.MGRarity = this.magicalGirl.rarity
+                return this.magicalGirl
             }
+        },
+        maxLvl () {
+            let maxLvl = 50
+            switch (this.MGRarity) {
+                case 1: {
+                    maxLvl = 40
+                    break;
+                }
+                case 2: {
+                    maxLvl = 50
+                    break;
+                }
+                case 3: {
+                    maxLvl = 60
+                    break;
+                }
+                case 4: {
+                    maxLvl = 80
+                    break;
+                }
+                case 5: {
+                    maxLvl = 100
+                    break;
+                }
+            }
+            return maxLvl
         }
     }
 }

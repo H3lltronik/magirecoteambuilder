@@ -2,7 +2,7 @@
     <div class="primary-box_outer-border">
         <div class="primary-box_middle-border">
 
-            <div class="primary-box_inner_title primary-title">Memoria</div>
+            <div class="primary-box_inner_title primary-title">Magical Girls</div>
             <div class="primary-box_inner_controls primary-title">
                 <el-button type="text" size="mini" @click="filtersVisible = !filtersVisible">
                     Filters
@@ -25,16 +25,23 @@
 
                         <el-col class="my-3" :span="24">
                             <el-row type="flex" justify="space-between" align="center">
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center mx-auto">
                                     <!-- <span class="primary-box_inner_toolbar_label">Type</span> -->
-                                    <el-radio-group size="mini" v-model="memType">
-                                        <el-radio-button label="Pasive"></el-radio-button>
-                                        <el-radio-button label="Active"></el-radio-button>
-                                        <el-radio-button label="Both"></el-radio-button>
+                                    <el-radio-group size="mini" v-model="MGType">
+                                        <el-radio-button label="Light"></el-radio-button>
+                                        <el-radio-button label="Dark"></el-radio-button>
+                                        <el-radio-button label="Aqua"></el-radio-button>
+                                        <el-radio-button label="Flame"></el-radio-button>
+                                        <el-radio-button label="Forest"></el-radio-button>
+                                        <el-radio-button label="Void"></el-radio-button>
+                                        <el-radio-button label="All"></el-radio-button>
                                     </el-radio-group>
                                 </div>
+                            </el-row>
+                        </el-col>
 
-                                <el-checkbox v-model="isPersonal">Is Personal</el-checkbox>
+                        <el-col class="my-3" :span="24">
+                            <el-row type="flex" justify="space-between" align="center">
                                 <el-checkbox v-model="notInInventory" disabled>Not in Inventory</el-checkbox>
                             </el-row>
                         </el-col>
@@ -42,9 +49,9 @@
                 </div>
 
                 <el-row :gutter="10" justify="start" class="d-flex flex-wrap justify-content-center">
-                    <div class="text-center item-mosaic mr-1" v-for="(memoria, index) in filteredMemorias" :key="index">
-                        <img @click="setSelectedMemoria (memoria)" class="item-mosaic_image img-fluid" :src="memoria.thumbnail" alt="">
-                        <p @click="setSelectedMemoria (memoria)">{{memoria.name}}</p>
+                    <div class="text-center mg-item-mosaic mr-1" v-for="(magicalGirl, index) in filteredMagicalGirls" :key="index">
+                        <img @click="setSelectedMagicalGirl (magicalGirl)" class="mg-item-mosaic_image img-fluid" :src="magicalGirl.thumbnail" alt="">
+                        <p @click="setSelectedMagicalGirl (magicalGirl)">{{magicalGirl.name}}</p>
                     </div>
                 </el-row>
             </div>
@@ -57,7 +64,7 @@ import { mapGetters } from 'vuex'
 
 export default {
     props: {
-        memorias: {
+        magicalGirls: {
             type: Array,
         }
     },
@@ -66,53 +73,37 @@ export default {
             filtersVisible: false,
             name: '',
             rarity: 0,
-            memType: 'Both',
-            isPersonal: false,
+            MGType: 'All',
             notInInventory: false,
         }
     },
     methods: {
-        setSelectedMemoria (memoria) {
-            this.$store.commit ('setSelectedMemoria', memoria)
+        setSelectedMagicalGirl (magicalGirl) {
+            this.$store.commit ('setSelectedMagicalGirl', magicalGirl)
         }
     },
     computed: {
-        // ...mapGetters([
-        //     'getMemorias',
-        // ]),
-        filteredMemorias () {
-            let memorias = this.memorias
-            let result = memorias
+        filteredMagicalGirls () {
+            let magicalGirls = this.magicalGirls
+            let result = magicalGirls
             // Filtrar por nombre
             if (this.name.length > 0) {
-                result = result.filter((memoria) =>{
-                    return memoria.name.match(this.name)
+                result = result.filter((magicalGirl) =>{
+                    return magicalGirl.name.match(this.name)
                 })
             }
 
             if (this.rarity > 0) {
-                result = result.filter((memoria) =>{
-                    return memoria.rarity == this.rarity
+                result = result.filter((magicalGirl) =>{
+                    return magicalGirl.rarity == this.rarity
                 })
             }
 
-            if (this.memType != 'Both') {
-                result = result.filter((memoria) =>{
-                    return memoria.type.toLowerCase().match(this.memType.toLowerCase())
+            if (this.MGType != 'All') {
+                result = result.filter((magicalGirl) =>{
+                    return magicalGirl.type.toLowerCase().match(this.MGType.toLowerCase())
                 })
             }
-
-            if (this.isPersonal) {
-                result = result.filter((memoria) =>{
-                    return memoria.personal
-                })
-            }
-
-            // if (this.isPersonal) {
-            //     result = result.filter((memoria) =>{
-            //         return memoria.personal
-            //     })
-            // }
 
             return result
         }

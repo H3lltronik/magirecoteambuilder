@@ -2,11 +2,11 @@
     <el-row class="h-100 pb-3" justify="space-between" type="flex">
         <el-col :span="12" :lg="12" :xl="12">
 
-            <MemGrid :memorias="memorias"></MemGrid>
+            <MGGrid :magicalGirls="magicalGirls"></MGGrid>
 
         </el-col>
         <el-col :span="10" :lg="10" :xl="8">
-            <MemViewer></MemViewer>
+            <MGViewer></MGViewer>
         </el-col>
     </el-row>
 </template>
@@ -15,14 +15,14 @@
 import { mapGetters } from 'vuex'
 
 import Aside from '../components/Aside'
-import MemViewer from '../components/MemViewer'
-import MemGrid from '../components/MemGrid'
+import MGViewer from '../components/MGViewer'
+import MGGrid from '../components/MGGrid'
 
 export default {
     components: {
         Aside,
-        MemViewer,
-        MemGrid,
+        MGViewer,
+        MGGrid,
     },
     data () {
         return {
@@ -34,7 +34,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            memorias: 'getMemorias',
+            magicalGirls: 'getMagicalGirls',
         }),
     }
 }
